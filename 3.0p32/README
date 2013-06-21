@@ -1,4 +1,4 @@
-== Unbound and libldns for Halon SR 3.0p30 ==
+== Unbound and libldns for Halon SR 3.0p32 ==
 
 Packaging and instructions: 
   Mikael Löfstrand <mikael.lofstrand@iis.se>
@@ -8,8 +8,8 @@ Halon Security Router:
   The great majority of the system is open source.
 
 Licenses:
-  Unbound: LICENSE.libldns
-  libldns: LICENSE.unbound
+  Unbound: LICENSE.unbound
+  libldns: LICENSE.libldns
   Packaging and instructions: LICENSE
 
 Instructions:
