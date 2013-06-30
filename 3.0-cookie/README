@@ -1,4 +1,4 @@
-== Unbound and libldns for Halon SR 3.0p32 ==
+== Unbound and libldns for Halon SR 3.0-cookie ==
 
 Packaging and instructions: 
   Mikael Löfstrand <mikael.lofstrand@iis.se>
@@ -13,9 +13,9 @@ Licenses:
   Packaging and instructions: LICENSE
 
 Instructions:
-  Put all files in /cfg/halon-unbound-3.0p32
+  Put all files in /cfg/halon-unbound-3.0-cookie
   
-  Run ln -s /cfg/halon-unbound-3.0p32/ /cfg/unbound
+  Run ln -s /cfg/halon-unbound-3.0-cookie/ /cfg/unbound
   
   Put the following in /cfg/skel/rc.local:
   

@@ -1,7 +1,7 @@
 #!/bin/ksh
 
-if [[ "$(cat /etc/version)" != "3.0-cookie-p32" ]]; then 
-	echo "This install script is for 3.0-cookie-p32!"
+if [[ "$(cat /etc/version | cut -d'-' -f1,2)" != "3.0-cookie" ]]; then 
+	echo "This install script is for 3.0-cookie!"
 	exit 1"
 fi
 
