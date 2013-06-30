@@ -1,10 +1,11 @@
 Unbound and libldns for Halon SR
 ================================
 
-This is a set of files and instructions for installing Unbound and libldns. Each set is packaged for a specific version of Halon SR. The current releases supported are:
-
- * 3.0p32
- * 3.0p30
+This is a set of files and instructions for installing Unbound and libldns. Each set is packaged for a specific version of Halon SR. The current releases supported are (with tested patch levels in a nested list):
+ * 3.0-cookie
+   * p30
+   * p32
+   * p33
 
 Halon Security Router
 ---------------------
@@ -14,11 +15,11 @@ Halon Security Router
 
 Instructions
 ------------
-Put all files in /cfg/halon-unbound-3.0p32
+Put all files in /cfg/halon-unbound-3.0-cookie
   
 Run 
 
-    ln -s /cfg/halon-unbound-3.0p32/ /cfg/unbound
+    ln -s /cfg/halon-unbound-3.0-cookie/ /cfg/unbound
   
   Put the following in /cfg/skel/rc.local:
   
