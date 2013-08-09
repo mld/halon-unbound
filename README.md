@@ -1,8 +1,10 @@
 Unbound and libldns for Halon SR
 ================================
 
-This is a set of files and instructions for installing Unbound and libldns. Each set is packaged for a specific version of Halon SR. The current releases supported are (with tested patch levels in a nested list):
- * 3.0-cookie
+This is a set of files and instructions for installing Unbound and libldns on Halon Security Router. Each set is packaged for a specific version of Halon SR. The current releases supported are (with tested patch levels in a nested list):
+ * 3.1-fox
+   * p5
+ * 3.0-cookie (earlier release, please see https://github.com/mld/halon-unbound/tree/master/3.0-cookie for instructions)
    * p30
    * p32
    * p33
@@ -15,18 +17,15 @@ Halon Security Router
 
 Instructions
 ------------
-Put all files in /cfg/halon-unbound-3.0-cookie
-  
-Run 
+Download https://github.com/mld/halon-unbound/blob/master/3.1-fox/unbound-install.sh and copy it to your SR, ie 
 
-    ln -s /cfg/halon-unbound-3.0-cookie/ /cfg/unbound
+    ftp -o /cfg/unbound-install.sh https://github.com/mld/halon-unbound/blob/master/3.1-fox/unbound-install.sh
+    chmod +x /cfg/unbound-install.sh
+  
+  Optionally, put your custom unbound.conf in /cfg/skel/unbound.conf
   
   Put the following in /cfg/skel/rc.local:
   
-    mkdir /var/unbound
-    mount_mfs -o nodev,nosuid -i 128 -s 4096 -P /cfg/unbound/unbound.skel/ swap /var/unbound
-    mount -uw /
-    /cfg/unbound/install.sh
-    mount -ur /
-    /usr/local/sbin/unbound-anchor -a "/var/unbound/etc/root.key"
-    /usr/local/sbin/unbound -c /var/unbound/etc/unbound.conf
+    /cfg/unbound-install.sh &
+
+  This automatically downloads and installs Unbound and libldns at reboot, and optionally uses your custom unbound.conf.
