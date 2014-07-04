@@ -1,12 +1,12 @@
 Unbound and libldns for Halon SR
 ================================
 
-This is a set of files and instructions for installing Unbound and libldns on Halon Security Router. Each set is packaged for a specific version of Halon SR. The current releases supported are (with tested patch levels in a nested list):
- * 3.3 - released 2014-07-04
-   * p1 (doesn't work yet)
+This is an install script and instructions for installing Unbound and libldns on Halon Security Router. 
+The current supported releases are (with tested patch levels in a nested list):
+ * 3.3
+   * p1
  * 3.2
- * 3.1-fox
-   * p5
+ * 3.1
 
 Halon Security Router
 ---------------------
