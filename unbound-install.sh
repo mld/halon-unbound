@@ -11,20 +11,22 @@ install_perl() {
 	[ ! -f SHA256.sig ] && ftp $BASEURL/SHA256.sig
 	[ ! -f $BASENAME  ] && ftp $BASEURL/$BASENAME
 
+	mount -uw /
 	signify -C -p /etc/signify/$PUBKEY -x SHA256.sig $BASENAME && tar -xzpf $BASENAME -C / ./usr/libdata/perl5
+	mount -ur /
 
-	echo "Perl installed
+	echo "Perl installed"
 }
 
 install_unbound() {
 	mount -uw /
-	if [ ! -d /usr/libdata/perl5 ]; then
+	if [ ! -d /var/unbound ]; then
 		mkdir /var/unbound
 		mount_mfs -o nodev,nosuid -i 128 -s 4096 swap /var/unbound
 	fi
 	pkg_add unbound
 	mount -ur /
-	[ -f /cfg/skel/unbound.conf ] &&  cp /cfg/skel/unbound.conf /var/unbound/etc/unbound.conf
+	[ -f /cfg/skel/unbound.conf ] && cp /cfg/skel/unbound.conf /var/unbound/etc/unbound.conf
 	/usr/local/sbin/unbound-anchor -a "/var/unbound/etc/root.key"
 	ftp -a -o /var/unbound/etc/named.cache ftp://ftp.internic.net/domain/named.cache
 	/usr/local/sbin/unbound-control-setup
@@ -51,4 +53,3 @@ case $VERSION in
 		echo "Please create an issue at https://github.com/mld/halon-unbound/issues"
 		exit 1
 esac
-
