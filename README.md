@@ -5,6 +5,7 @@ This is an install script and instructions for installing Unbound and libldns on
 The current supported releases are (with tested patch levels in a nested list):
  * 3.3
    * p1
+   * p2
  * 3.2
  * 3.1
 
@@ -33,4 +34,4 @@ Download https://github.com/mld/halon-unbound/blob/master/unbound-install.sh and
     /cfg/unbound-install.sh &
 
   This automatically downloads and installs Perl from OpenBSD base package and Unbound with dependencies 
-  at reboot, and optionally uses your custom unbound.conf.
+  at reboot, and optionally uses your custom unbound.conf (placed in /cfg/skel/unbound.conf).
