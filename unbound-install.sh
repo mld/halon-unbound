@@ -1,8 +1,10 @@
 #!/bin/ksh
 
 MIRROR="http://ftp.eu.openbsd.org/pub/OpenBSD"
-PKG_CACHE=/data/pkg_cache
-mkdir -p $PKG_CACHE
+
+debug() {
+	logger -s "$1"
+}
 
 install_perl() {
 	# Check if Perl is installed already
@@ -17,7 +19,7 @@ install_perl() {
 	signify -C -p /etc/signify/$PUBKEY -x SHA256.sig $BASENAME && tar -xzpf $BASENAME -C / ./usr/libdata/perl5
 	mount -ur /
 
-	echo "Perl installed"
+	debug "Perl installed"
 }
 
 install_unbound() {
@@ -35,7 +37,7 @@ install_unbound() {
 	/usr/local/sbin/unbound-control-setup
 	/usr/local/sbin/unbound -c /var/unbound/etc/unbound.conf
 
-	echo "Unbound installed"
+	debug "Unbound installed"
 }
 
 VERSION=$(cat /etc/version | cut -d'-' -f1)
@@ -46,13 +48,15 @@ case $VERSION in
 		BASENAME=base55.tgz
 		PUBKEY=openbsd-55-base.pub
 		install_perl
+		debug "Sleeping for 60 seconds"
+		sleep 60
 		install_unbound
 		;;
 	3.2|3.1)
 		install_unbound
 		;;
 	*)
-		echo "You are running an unsupported version of Halon SR."
-		echo "Please create an issue at https://github.com/mld/halon-unbound/issues"
+		debug "You are running an unsupported version of Halon SR."
+		debug "Please create an issue at https://github.com/mld/halon-unbound/issues"
 		exit 1
 esac
