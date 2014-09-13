@@ -1,6 +1,8 @@
 #!/bin/ksh
 
 MIRROR="http://ftp.eu.openbsd.org/pub/OpenBSD"
+PKG_CACHE=/data/pkg_cache
+mkdir -p $PKG_CACHE
 
 install_perl() {
 	# Check if Perl is installed already
@@ -24,7 +26,8 @@ install_unbound() {
 		mkdir -p /var/unbound
 		mount_mfs -o nodev,nosuid -i 128 -s 4096 swap /var/unbound
 	fi
-	pkg_add unbound
+	pkg_delete -I unbound
+	pkg_add -I unbound
 	mount -ur /
 	[ -f /cfg/skel/unbound.conf ] && cp /cfg/skel/unbound.conf /var/unbound/etc/unbound.conf
 	/usr/local/sbin/unbound-anchor -a "/var/unbound/etc/root.key"
