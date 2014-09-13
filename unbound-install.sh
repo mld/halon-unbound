@@ -7,7 +7,7 @@ install_perl() {
 	[ -d /usr/libdata/perl5 ] && return 0
 
 	cd /data
-	# Download files if the don't exist
+	# Download missing files
 	[ ! -f SHA256.sig ] && ftp $BASEURL/SHA256.sig
 	[ ! -f $BASENAME  ] && ftp $BASEURL/$BASENAME
 
