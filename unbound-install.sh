@@ -20,8 +20,8 @@ install_perl() {
 
 install_unbound() {
 	mount -uw /
-	if [ ! -d /var/unbound ]; then
-		mkdir /var/unbound
+	if [ ! -d /var/unbound/etc ]; then
+		mkdir -p /var/unbound
 		mount_mfs -o nodev,nosuid -i 128 -s 4096 swap /var/unbound
 	fi
 	pkg_add unbound
